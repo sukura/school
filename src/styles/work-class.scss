@@ -1,0 +1,169 @@
+// 我的班级 样式
+.classPage {
+    padding-top: 70px;
+    .demo-container {
+        background: #ffffff;
+        height: 64px;
+        border-radius: 2px;
+        display: flex;
+        justify-content: space-between;
+        .dayTab {
+            width: 50%;
+            border-radius: 2px;
+            p {
+                // width: 80px;
+                padding: 0 20px;
+                text-align: center;
+                margin-top: 15px;
+                cursor: pointer;
+                span {
+                    display: block;
+                    font-size: 18px;
+                    height: 20px;
+                    color: #43425D;
+                }
+                em {
+                    display: inline-block;
+                    border-bottom: 2px solid transparent;
+                    height: 2px;
+                    width: 32px;
+                }
+            }
+            .active {
+                span {
+                    color: #204EFF;
+                }
+                em {
+                    border-bottom: 2px solid #204EFF;
+                }
+            }
+        }
+        .dayTab2 {
+            width: 50%;
+            padding-top: 10px;
+            .el-date-editor {
+                margin: 10px 10px 0 0;
+                /deep/ .el-input__inner {
+                    border-radius: 30px;
+                }
+            }
+        }
+    }
+    .char-box {
+        margin-top: 20px;
+        height: 285px;
+        display: flex;
+        justify-content: space-between;
+        .chart {
+            width: 49%;
+            min-width: 548px;
+            height: 100%;
+            background: #ffffff;
+            text-align: center;
+        }
+    }
+    .table {
+        .el-progress {
+            width: 120px;
+            display: inline-block;
+        }
+    }
+}
+
+.dialog-top {
+    ul {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background: #ffffff;
+        padding: 24px 0;
+        li {
+            text-align: center;
+            b {
+                display: block;
+                font-size: 18px;
+                font-weight: normal;
+                padding-bottom: 5px;
+            }
+            span {
+                color: rgba(67, 66, 93, 0.85);
+                display: block;
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+    }
+}
+
+.dialog-bottom {
+    // padding: 20px;
+    background: #ffffff;
+    .title {
+        .el-checkbox {
+            float: right;
+            margin-right: 10px;
+            font-weight: normal;
+        }
+    }
+    ol {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        li {
+            width: 125px;
+            height: 180px;
+            margin: 8px;
+            background: rgba(120, 148, 255, 0.1);
+            position: relative;
+            .el-dropdown {
+                position: absolute;
+                right: -10px;
+                top: -5px;
+            }
+            dl {
+                text-align: center;
+                width: 100%;
+                color: #43425D;
+                dt {
+                    margin: 16px auto 0;
+                    text-align: center;
+                    img {
+                        display: block;
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 50%;
+                        margin: 0 auto 0;
+                    }
+                    h3 {
+                        font-size: 14px;
+                    }
+                    h4 {
+                        font-size: 12px;
+                    }
+                }
+            }
+            p {
+                text-align: center;
+                span {
+                    display: inline-block;
+                    font-size: 12px;
+                    text-align: center;
+                    b {
+                        font-weight: normal;
+                        display: block;
+                        color: #43425D;
+                    }
+                    em {
+                        display: block;
+                        color: rgba(67, 66, 93, 0.65);
+                        font-weight: 500;
+                    }
+                }
+            }
+            h1 {
+                text-align: center;
+                padding-top: 5px;
+            }
+        }
+    }
+}
