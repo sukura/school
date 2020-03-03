@@ -57,6 +57,12 @@ export default {
         this.$router.push({
           path: 'myActivity'
         })
+      } else if (index === 4) {
+        this.$store.state.workStatus = 4
+        // 综合查询
+        this.$router.push({
+          path: 'syntheticalOne'
+        })
       }
     }
   }

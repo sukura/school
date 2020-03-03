@@ -51,6 +51,16 @@ export default new Router({
       name: 'myPartake',
       component: () =>
                 import('../views/workManage/my-partake.vue')
+    }, {
+      path: 'syntheticalOne', // 综合查询 - 人次查询
+      name: 'syntheticalOne',
+      component: () =>
+                import('../views/workManage/synthetical-one.vue')
+    }, {
+      path: 'syntheticalTwo', // 综合查询 - 节次查询
+      name: 'syntheticalTwo',
+      component: () =>
+                import('../views/workManage/synthetical-two.vue')
     }]
   }]
 })
