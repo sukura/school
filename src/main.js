@@ -10,11 +10,15 @@ import '../theme/index.css'
 import echarts from 'echarts'
 import './styles/index.scss'
 import './icons/index'
+import axios from 'axios'
 Vue.use(ElementUI, {
   size: 'small'
 })
 Vue.use(MuseUI)
 Vue.prototype.$echarts = echarts
+Vue.prototype.$http = axios
+// 配置baseUrl
+axios.defaults.baseURL = '/api'
 
 Vue.config.productionTip = false
 

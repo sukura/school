@@ -234,6 +234,7 @@ export default {
   mounted() {
     this.drawLine()
     this.drawLine2()
+    this.getTablelist()
   },
   methods: {
     handleSelectionChange(val) {
@@ -247,6 +248,15 @@ export default {
     },
     format(percentage) {
       return percentage === 100 ? '100%' : `${percentage}%`
+    },
+    // 获取Table数据
+    getTablelist() {
+      console.log('123')
+      this.$http.post('/tablelist').then(response => {
+        console.log(response)
+      }).catch(res => {
+        console.log(res)
+      })
     },
     drawLine() {
       // 基于准备好的dom，初始化echarts实例

@@ -7,15 +7,27 @@ const name = 'vue Element Admin'
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
+
+const port = process.env.port || process.env.npm_config_port || 8001 // dev port
+
 module.exports = {
+  publicPath: '/',
+  outputDir: 'dist',
+  assetsDir: 'static',
+  lintOnSave: process.env.NODE_ENV === 'development',
+  productionSourceMap: false,
   devServer: {
+    port: port,
     open: true,
-    port: 8001,
-    'proxy': {
+    overlay: {
+      warnings: false,
+      errors: true
+    },
+    proxy: {
       '/api': {
-        'target': 'http://t.weather.sojson.com', // 目标接口域名
-        'changeOrigin': true, // 是否跨域
-        'pathRewrite': {
+        target: 'https://www.easy-mock.com/mock/5e5f9dabdc856429bc70dee0/school', // 目标接口域名
+        changeOrigin: true, // 是否跨域
+        pathRewrite: {
           '^/api': '/api' // 重写接口
         }
       }
