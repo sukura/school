@@ -6,7 +6,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     // 我的课程
-    workStatus: 1
+    workStatus: 1,
+    // 到校查询
+    arriveStatus: 1
   },
   mutations: {
 

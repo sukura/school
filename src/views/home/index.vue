@@ -41,8 +41,14 @@ export default {
   methods: {
     jumpPage(index) {
       if (index === 0) {
+        // 考勤管理
         this.$router.push({
           path: '/workManage'
+        })
+      } else if (index === 1) {
+        // 到校查询
+        this.$router.push({
+          path: '/arriveSchool'
         })
       }
     }
