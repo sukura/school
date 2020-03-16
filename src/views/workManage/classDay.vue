@@ -46,7 +46,7 @@
         <el-table-column label="课程" prop="className" align="center">
           <template slot-scope="scope">
             <div>
-              <span class="shou" @click="classDetail(scope.row.className)"><i class="el-icon-view" /> {{ scope.row.className }}</span>
+              <span class="shou" @click="classDetail(scope.row)"><i class="el-icon-view" /> {{ scope.row.className }}</span>
             </div>
           </template>
         </el-table-column>
@@ -78,23 +78,23 @@
         <div class="dialog-top">
           <h2 class="title">
             课程信息
-            <el-button type="primary" icon="el-icon-download" round class="btn">导出</el-button>
+            <!--<el-button type="primary" icon="el-icon-download" round class="btn">导出</el-button>-->
           </h2>
           <ul>
-            <li>课程名称：语文</li>
-            <li>任课老师：<i class="el-icon-user" /> 张老师</li>
-            <li>上课时间：<i class="el-icon-timer" /> 8:00 - 9:00</li>
-            <li>上课地点：<i class="el-icon-location-outline" /> 2013</li>
+            <li>课程名称：{{courseInfo.className}}</li>
+            <li>任课老师：<i class="el-icon-user" /> {{courseInfo.teacher}}</li>
+            <li>上课时间：<i class="el-icon-timer" />{{courseInfo.time}}</li>
+            <li>上课地点：<i class="el-icon-location-outline" /> {{courseInfo.classRoom}}</li>
           </ul>
         </div>
         <div class="mt-1 dialog-bottom">
           <h2 class="title">
             学生考勤
-            <el-button type="primary" round class="btn">全部出勤</el-button>
-            <el-checkbox v-model="checked">查看异常</el-checkbox>
+            <!--<el-button type="primary" round class="btn">全部出勤</el-button>-->
+            <el-checkbox v-model="checked" @change="abnormal">查看异常</el-checkbox>
           </h2>
           <ol>
-            <li v-for="(item, index) in workData" :key="index" :class="'color' + item.status">
+            <li v-for="(item, index) in courseInfo.workData" :key="index" :class="'color' + item.status">
               <div :class="'jiao' + item.status" />
               <el-dropdown @command="handleCommand" @visible-change="showStatus">
                 <span class="el-dropdown-link">
@@ -111,7 +111,7 @@
                 </el-dropdown-menu>
               </el-dropdown>
               <dl>
-                <dt><img src="../../assets/user.jpg" alt=""></dt>
+                <dt><img :src="item.avatar" alt=""></dt>
                 <dt>
                   <h3>{{ item.name }}</h3>
                   <h4>{{ item.number }}</h4>
@@ -144,10 +144,12 @@ export default {
   data() {
     return {
       dataDay: '',
-      dialogTitle: '高二(5)班 语文考勤',
+      dialogTitle: '',
       list: [
         {
+          class: '高二(5)班',
           className: '语文',
+          teacher: '刘老师',
           classRoom: '2513-1',
           time: '8:00 - 9:00',
           number: 37,
@@ -155,9 +157,56 @@ export default {
           lack: 1,
           late: 0,
           lateAndleave: 1,
-          attendance: 100
+          attendance: 100,
+          workData: [
+            {
+              name: '李墨雪',
+              avatar: 'static/img/user.53dd8973.jpg',
+              number: '20180304',
+              time1: '07:55',
+              time2: '08:55',
+              status: 1
+            }, {
+              name: '李墨雪',
+              avatar: 'static/img/user.53dd8973.jpg',
+              number: '20180304',
+              time1: '07:55',
+              time2: '08:55',
+              status: 2
+            }, {
+              name: '李墨雪',
+              avatar: 'static/img/user.53dd8973.jpg',
+              number: '20180304',
+              time1: '07:55',
+              time2: '08:55',
+              status: 3
+            }, {
+              name: '李墨雪',
+              avatar: 'static/img/user.53dd8973.jpg',
+              number: '20180304',
+              time1: '07:55',
+              time2: '08:55',
+              status: 4
+            }, {
+              name: '李墨雪',
+              avatar: 'static/img/user.53dd8973.jpg',
+              number: '20180304',
+              time1: '07:55',
+              time2: '08:55',
+              status: 5
+            }, {
+              name: '李墨雪',
+              avatar: 'static/img/user.53dd8973.jpg',
+              number: '20180304',
+              time1: '07:55',
+              time2: '08:55',
+              status: 1
+            }
+          ]
         }, {
+          class: '高二(5)班',
           className: '语文',
+          teacher: '刘老师',
           classRoom: '2513-1',
           time: '8:00 - 9:00',
           number: 37,
@@ -165,9 +214,12 @@ export default {
           lack: 1,
           late: 0,
           lateAndleave: 1,
-          attendance: 20
+          attendance: 20,
+          workData: []
         }, {
+          class: '高二(5)班',
           className: '语文',
+          teacher: '刘老师',
           classRoom: '2513-1',
           time: '8:00 - 9:00',
           number: 37,
@@ -175,49 +227,13 @@ export default {
           lack: 1,
           late: 0,
           lateAndleave: 1,
-          attendance: 80
+          attendance: 80,
+          workData: []
         }
       ],
-      workData: [
-        {
-          name: '李墨雪',
-          number: '20180304',
-          time1: '07:55',
-          time2: '08:55',
-          status: 1
-        }, {
-          name: '李墨雪',
-          number: '20180304',
-          time1: '07:55',
-          time2: '08:55',
-          status: 2
-        }, {
-          name: '李墨雪',
-          number: '20180304',
-          time1: '07:55',
-          time2: '08:55',
-          status: 3
-        }, {
-          name: '李墨雪',
-          number: '20180304',
-          time1: '07:55',
-          time2: '08:55',
-          status: 4
-        }, {
-          name: '李墨雪',
-          number: '20180304',
-          time1: '07:55',
-          time2: '08:55',
-          status: 5
-        }, {
-          name: '李墨雪',
-          number: '20180304',
-          time1: '07:55',
-          time2: '08:55',
-          status: 1
-        }
-      ],
-      checked: true,
+      courseInfo: {},
+      workData: {},
+      checked: false,
       pickerOptions: {
         disabledDate(time) {
           return time.getTime() > Date.now()
@@ -237,6 +253,15 @@ export default {
     this.getTablelist()
   },
   methods: {
+    abnormal() {
+      if (this.checked) {
+        this.courseInfo.workData = this.workData.filter(temp => {
+          return temp['status'] !== 1
+        })
+      } else {
+        this.courseInfo.workData = this.workData
+      }
+    },
     handleSelectionChange(val) {
       this.multipleSelection = val
     },
@@ -251,9 +276,8 @@ export default {
     },
     // 获取Table数据
     getTablelist() {
-      console.log('123')
-      this.$http.post('/tablelist').then(response => {
-        console.log(response)
+      this.$http.post('/course').then(response => {
+        this.list = response.data.data
       }).catch(res => {
         console.log(res)
       })
@@ -346,7 +370,10 @@ export default {
       })
     },
     // 查看课程详情
-    classDetail() {
+    classDetail(row) {
+      this.dialogTitle = row.class + ' ' + row.className + '考勤'
+      this.courseInfo = row
+      this.workData = row.workData
       this.dialog1 = true
     },
     closeDialog() {

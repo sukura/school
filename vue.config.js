@@ -25,10 +25,11 @@ module.exports = {
     },
     proxy: {
       '/api': {
-        target: 'https://www.easy-mock.com/mock/5e5f9dabdc856429bc70dee0/school', // 目标接口域名
+        target: 'http://127.0.0.1:8000/api/v1', // 目标接口域名
+        // target: 'https://www.easy-mock.com/mock/5e5f9dabdc856429bc70dee0/school', // 目标接口域名
         changeOrigin: true, // 是否跨域
         pathRewrite: {
-          '^/api': '/api' // 重写接口
+          '^/api': '' // 重写接口
         }
       }
     }
