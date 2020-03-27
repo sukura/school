@@ -251,9 +251,10 @@ export default {
     },
     // 获取Table数据
     getTablelist() {
-      console.log('123')
       this.$http.post('/tablelist').then(response => {
-        console.log(response)
+        if (response.data.code === 200) {
+          this.list = response.data.data
+        }
       }).catch(res => {
         console.log(res)
       })
