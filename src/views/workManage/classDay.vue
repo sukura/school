@@ -81,10 +81,10 @@
             <!--<el-button type="primary" icon="el-icon-download" round class="btn">导出</el-button>-->
           </h2>
           <ul>
-            <li>课程名称：{{courseInfo.className}}</li>
-            <li>任课老师：<i class="el-icon-user" /> {{courseInfo.teacher}}</li>
-            <li>上课时间：<i class="el-icon-timer" />{{courseInfo.time}}</li>
-            <li>上课地点：<i class="el-icon-location-outline" /> {{courseInfo.classRoom}}</li>
+            <li>课程名称：{{ courseInfo.className }}</li>
+            <li>任课老师：<i class="el-icon-user" /> {{ courseInfo.teacher }}</li>
+            <li>上课时间：<i class="el-icon-timer" />{{ courseInfo.time }}</li>
+            <li>上课地点：<i class="el-icon-location-outline" /> {{ courseInfo.classRoom }}</li>
           </ul>
         </div>
         <div class="mt-1 dialog-bottom">
@@ -151,7 +151,7 @@ export default {
           className: '语文',
           teacher: '刘老师',
           classRoom: '2513-1',
-          time: '8:00 - 9:00',
+          time: '9:00 - 9:45',
           number: 37,
           leaveEarly: 0,
           lack: 1,
@@ -208,7 +208,7 @@ export default {
           className: '语文',
           teacher: '刘老师',
           classRoom: '2513-1',
-          time: '8:00 - 9:00',
+          time: '10:00 - 10:45',
           number: 37,
           leaveEarly: 0,
           lack: 1,
@@ -221,7 +221,7 @@ export default {
           className: '语文',
           teacher: '刘老师',
           classRoom: '2513-1',
-          time: '8:00 - 9:00',
+          time: '11:00 - 11:45',
           number: 37,
           leaveEarly: 0,
           lack: 1,

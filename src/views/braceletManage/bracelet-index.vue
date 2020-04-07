@@ -1,15 +1,15 @@
-<!-- 到校查询 -->
+<!-- 手环中心 -->
 <template>
-  <div class="workPage arriveSchool">
-    <!-- 到校查询头部 -->
+  <div class="workPage handManage">
+    <!-- 手环中心头部 -->
     <div class="header">
       <div class="head-nav">
         <div class="head-after">
           <h2><img src="../../assets/logo.png" alt=""></h2>
-          <h3>到校查询</h3>
+          <h3>手环中心</h3>
           <ol class="nav">
-            <li :class="$store.state.arriveStatus === 1 ? 'active' : ''" @click="routerJump(1)">进出记录</li>
-            <li :class="$store.state.arriveStatus === 2 ? 'active' : ''" @click="routerJump(2)">到校查询</li>
+            <li :class="$store.state.handStatus === 1 ? 'active' : ''" @click="routerJump(1)">手环管理</li>
+            <li :class="$store.state.handStatus === 2 ? 'active' : ''" @click="routerJump(2)">数据中心</li>
           </ol>
         </div>
         <user-info />
@@ -34,21 +34,21 @@ export default {
     }
   },
   created() {
-    this.active = this.$store.state.arriveStatus
+    this.active = this.$store.state.handStatus
   },
   methods: {
     routerJump(index) {
-      this.$store.state.arriveStatus = index
+      this.$store.state.handStatus = index
       if (index === 1) {
-        // 进出记录
+        // 手环管理
         this.$router.push({
-          path: 'arriveRecord'
+          path: 'braceletManage'
         })
       } else if (index === 2) {
-        this.$store.state.arriveStatus = 2
-        // 到校查询
+        this.$store.state.handStatus = 2
+        // 数据中心
         this.$router.push({
-          path: 'arrivelist'
+          path: 'dataCore'
         })
       }
     }
@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.arriveSchool {
+.handManage {
   width: 100%;
   padding-top: 56px;
   box-sizing: border-box;

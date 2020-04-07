@@ -11,6 +11,7 @@ import echarts from 'echarts'
 import './styles/index.scss'
 import './icons/index'
 import axios from 'axios'
+import './mock/index'
 Vue.use(ElementUI, {
   size: 'small'
 })

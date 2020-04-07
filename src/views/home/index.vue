@@ -23,17 +23,20 @@ export default {
     return {
       navData: [
         {
+          title: '手环中心',
+          imgUrl: require('../../assets/home8.png')
+        }, {
+          title: '用户中心',
+          imgUrl: require('../../assets/home7.png')
+        }, {
+          title: '体育课',
+          imgUrl: require('../../assets/home9.png')
+        }, {
           title: '考勤管理',
           imgUrl: require('../../assets/home1.png')
         }, {
           title: '到校查询',
           imgUrl: require('../../assets/home6.png')
-        }, {
-          title: '体育达标',
-          imgUrl: require('../../assets/home3.png')
-        }, {
-          title: '体质监测',
-          imgUrl: require('../../assets/home5.png')
         }
       ]
     }
@@ -41,11 +44,16 @@ export default {
   methods: {
     jumpPage(index) {
       if (index === 0) {
+        // 手环中心
+        this.$router.push({
+          path: '/bracelet'
+        })
+      } else if (index === 3) {
         // 考勤管理
         this.$router.push({
           path: '/workManage'
         })
-      } else if (index === 1) {
+      } else if (index === 4) {
         // 到校查询
         this.$router.push({
           path: '/arriveSchool'

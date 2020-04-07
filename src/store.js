@@ -8,7 +8,9 @@ export default new Vuex.Store({
     // 我的课程
     workStatus: 1,
     // 到校查询
-    arriveStatus: 1
+    arriveStatus: 1,
+    // 手环中心
+    handStatus: 1
   },
   mutations: {
 
