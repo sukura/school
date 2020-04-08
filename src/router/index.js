@@ -95,5 +95,22 @@ export default new Router({
         component: () => import('../views/braceletManage/data-core.vue')
       }
     ]
+  }, {
+    path: '/sports', // 到校查询 - 进出记录
+    name: 'sports',
+    redirect: '/sports/sports',
+    component: () =>
+            import('../views/sports/sports-index.vue'),
+    children: [{
+      path: 'sports',
+      name: 'sports',
+      component: () =>
+                import('../views/sports/record.vue')
+    }, {
+      path: 'sportslist', // 到校查询 列表页
+      name: 'sportslist',
+      component: () =>
+                import('../views/sports/sports-list.vue')
+    }]
   }]
 })
