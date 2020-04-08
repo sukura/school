@@ -26,7 +26,7 @@
         手环列表
         <el-button type="primary" class="btn" icon="el-icon-download" size="small" @click="downLoad">下载模版</el-button>
         <el-button type="primary" class="btn" icon="el-icon-circle-plus-outline" size="small" @click="addExport">批量导入</el-button>
-        <el-button type="primary" class="btn" icon="el-icon-circle-plus-outline" size="small" @click="addOne">单个添加</el-button>
+        <el-button type="primary" class="btn" icon="el-icon-circle-plus-outline" size="small" @click="dialog2 = true">单个添加</el-button>
       </h2>
       <el-table :data="tableData" stripe height="500">
         <el-table-column label="手环编号" prop="id" align="center" />
@@ -90,6 +90,39 @@
         </dl>
       </div>
     </mu-dialog>
+    <!-- 单个添加 -->
+    <mu-dialog width="460" :open.sync="dialog2">
+      <mu-appbar color="#204EFF" :title="dialogTitle2" />
+      <div class="dialogList">
+        <div class="search">
+          <el-input v-model="handId" placeholder="请输入手环编号或手环ID">
+            <el-button slot="append" icon="el-icon-search" />
+          </el-input>
+        </div>
+        <h2>入库方式</h2>
+        <div class="ruku">
+          <el-radio v-model="ruku1" label="1">根据手环编号入库</el-radio>
+          <el-radio v-model="ruku1" label="2">根据手环ID入库</el-radio>
+        </div>
+      </div>
+      <div class="dialogList">
+        <h2>手环信息</h2>
+        <dl>
+          <dt><img src="../../assets/shouhuan.png" alt=""></dt>
+          <dd>
+            <p><span>手环颜色：</span> {{ handDetail.color }}</p>
+            <p><span>手环编号：</span> {{ handDetail.id }}</p>
+            <p><span>手环ID：</span> {{ handDetail.mac }}</p>
+            <p><span>一卡通卡号：</span> {{ handDetail.color }}</p>
+          </dd>
+        </dl>
+        <h3 class="info">注意：若系统中手环信息与手环实际信息不一致，请勿入库</h3>
+        <div class="footer">
+          <el-button round size="mini" @click="closeDialog2">取消入库</el-button>
+          <el-button type="primary" round class="btn" size="mini">确认入库</el-button>
+        </div>
+      </div>
+    </mu-dialog>
   </div>
 </template>
 <script>
@@ -99,6 +132,11 @@ export default {
     return {
       dialog1: false,
       dialogTitle: '手环记录',
+      dialog2: false,
+      dialogTitle2: '单个入库',
+      // 手环ID
+      handId: '',
+      ruku1: '1',
       formData: {
         number: '',
         status: '',
@@ -174,6 +212,10 @@ export default {
     closeDialog() {
       this.dialog1 = false
     },
+    // 单个入库 弹窗 关闭
+    closeDialog2() {
+      this.dialog2 = false
+    },
     // 编辑
     editInfo(obj) {
       console.log(obj)
@@ -210,7 +252,6 @@ export default {
     },
     // 查看记录
     viewInfo(obj) {
-      console.log(obj)
       this.dialog1 = true
     }
   }
@@ -236,9 +277,15 @@ export default {
 }
 // 查看详情里面的弹窗
 .dialogList {
-  background: #efefef;
+  background: #F0F0F7;
   padding-top: 20px;
   position: relative;
+  .search {
+    padding: 0 24px 20px;
+    .el-input {
+      border-radius: 30px;
+    }
+  }
   h2 {
     font-size: 16px;
     color: #43425D;
@@ -276,6 +323,21 @@ export default {
         }
       }
     }
+  }
+  .info {
+    font-size: 12px;
+    color: #999;
+    background: #fff;
+    padding-left: 24px;
+  }
+  .footer {
+    text-align: right;
+    background: #fff;
+    padding: 20px;
+  }
+  .ruku {
+    background: #fff;
+    padding: 24px;
   }
   .status {
     width: 0;
