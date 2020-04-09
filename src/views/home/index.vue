@@ -48,6 +48,11 @@ export default {
         this.$router.push({
           path: '/bracelet'
         })
+      } else if (index === 2) {
+        // 考勤管理
+        this.$router.push({
+          path: '/sports'
+        })
       } else if (index === 3) {
         // 考勤管理
         this.$router.push({
