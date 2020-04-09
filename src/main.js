@@ -13,7 +13,7 @@ import './icons/index'
 import axios from 'axios'
 import './mock/index'
 import Mock from './mock/mock'
-Mock.start();
+Mock.start()
 Vue.use(ElementUI, {
   size: 'small'
 })

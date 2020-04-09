@@ -96,21 +96,20 @@ export default new Router({
       }
     ]
   }, {
-    path: '/sports', // 到校查询 - 进出记录
+    path: '/sports', // 体育课 - 今日课程
     name: 'sports',
-    redirect: '/sports/sports',
-    component: () =>
-            import('../views/sports/sports-index.vue'),
-    children: [{
-      path: 'sports',
-      name: 'sports',
-      component: () =>
-                import('../views/sports/record.vue')
-    }, {
-      path: 'sportslist', // 到校查询 列表页
-      name: 'sportslist',
-      component: () =>
-                import('../views/sports/sports-list.vue')
-    }]
+    redirect: '/sports/sportsDay',
+    component: () => import('../views/sports/sports-index.vue'),
+    children: [
+      {
+        path: 'sportsDay', // 体育课 - 今日课程
+        name: 'sportsDay',
+        component: () => import('../views/sports/record.vue')
+      }, {
+        path: 'sportslist', // 体育课 - 历史课程
+        name: 'sportslist',
+        component: () => import('../views/sports/sports-list.vue')
+      }
+    ]
   }]
 })

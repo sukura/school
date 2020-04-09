@@ -1,5 +1,5 @@
 export default {
-  data () {
+  data() {
     /* eslint-disable */
     return {
       // 设置属性
@@ -25,20 +25,20 @@ export default {
     }
     /* eslint-enable */
   },
-  created () {
+  created() {
     if (this.mixinViewModuleOptions.createdIsNeed) {
       this.queryDataList()
     }
   },
-  activated () {
-    console.log('object11342');
+  activated() {
+    console.log('object11342')
     if (this.mixinViewModuleOptions.activatedIsNeed) {
       this.queryDataList()
     }
   },
   methods: {
     // 获取数据列表
-    queryDataList () {
+    queryDataList() {
       this.dataListLoading = true
       this.$http.get(
         this.mixinViewModuleOptions.getDataListURL,
@@ -47,11 +47,11 @@ export default {
             page: this.mixinViewModuleOptions.getDataListIsPage ? this.page : null,
             limit: this.mixinViewModuleOptions.getDataListIsPage ? this.limit : null,
             ...this.formData
-          }          
+          }
         }
       ).then(({ data: res }) => {
         this.dataListLoading = false
-        console.log('res :', res);
+        console.log('res :', res)
         if (res.code !== 0) {
           this.dataList = []
           this.total = 0
@@ -64,26 +64,26 @@ export default {
       })
     },
     // 多选
-    dataListSelectionChangeHandle (val) {
+    dataListSelectionChangeHandle(val) {
       this.dataListSelections = val
     },
     // 分页, 每页条数
-    pageSizeChangeHandle (val) {
+    pageSizeChangeHandle(val) {
       this.page = 1
       this.limit = val
       this.queryDataList()
     },
     // 分页, 当前页
-    pageCurrentChangeHandle (val) {
+    pageCurrentChangeHandle(val) {
       this.page = val
       this.queryDataList()
     },
-    getDataList: function () {
+    getDataList() {
       this.page = 1
       this.queryDataList()
     },
     // 新增 / 修改
-    addOrUpdateHandle (id) {
+    addOrUpdateHandle(id) {
       this.addOrUpdateVisible = true
       this.$nextTick(() => {
         this.$refs.addOrUpdate.formData.id = id
@@ -91,7 +91,7 @@ export default {
       })
     },
     // 删除
-    deleteHandle (id) {
+    deleteHandle(id) {
       if (this.mixinViewModuleOptions.deleteIsBatch && !id && this.dataListSelections.length <= 0) {
         return this.$message({
           message: '请选择你要批量删除的数据？',
@@ -125,17 +125,17 @@ export default {
       }).catch(() => {})
     },
     // 导出
-    exportHandle () {
+    exportHandle() {
       console.log('导出')
     },
     formatJson(filterVal, jsonData) {
       return jsonData.map(v => filterVal.map(j => v[j]))
     },
     export2Excel(tableList, fileName = '列表详情') {
-      var  list = []
-      this.dataList.forEach((item,index)=>{
-        for(let key in item){
-          if(item[key] == null){
+      var list = []
+      this.dataList.forEach((item, index) => {
+        for (var key in item) {
+          if (item[key] == null) {
             item[key] = ''
           }
         }
@@ -143,9 +143,9 @@ export default {
       })
       require.ensure([], () => {
         const { export_json_to_excel } = require('@/vendor/Export2Excel')
-        let tHeader = []
-        let filterVal = []
-        Object.entries(tableList).map(([key, label])=>{
+        const tHeader = []
+        const filterVal = []
+        Object.entries(tableList).map(([key, label]) => {
           filterVal.push(key)
           tHeader.push(label)
         })

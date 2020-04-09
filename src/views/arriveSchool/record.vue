@@ -9,7 +9,7 @@
       </mu-flex>
       <mu-flex class="flex-wrapper dayTab2" justify-content="end">
         <mu-flex class="flex-demo" justify-content="center">
-          <el-form ref="formData" :model="formData" :inline="true" @keyup.enter.native="queryDataList()" label-width="80px">
+          <el-form ref="formData" :model="formData" :inline="true" label-width="80px" @keyup.enter.native="queryDataList()">
             <el-form-item label="日期">
               <el-date-picker v-model="formData.dataDay" type="date" :picker-options="pickerOptions" :clearable="false" placeholder="选择日期" />
             </el-form-item>
@@ -27,11 +27,11 @@
         </mu-flex>
       </mu-flex>
     </mu-container>
-    <el-table  v-loading="dataListLoading" @selection-change="dataListSelectionChangeHandle" :data="dataList" stripe height="600">
+    <el-table v-loading="dataListLoading" :data="dataList" stripe height="600" @selection-change="dataListSelectionChangeHandle">
       <el-table-column label="姓名" prop="name">
         <template slot-scope="{row}">
-          <el-avatar :size="'small'" :src="row.avatar"/>
-          {{row.name}}
+          <el-avatar :size="'small'" :src="row.avatar" />
+          {{ row.name }}
         </template>
       </el-table-column>
       <el-table-column label="学号" prop="studentId" />
@@ -51,8 +51,8 @@
       :total="total"
       layout="sizes, prev, pager, next, jumper"
       @size-change="pageSizeChangeHandle"
-      @current-change="pageCurrentChangeHandle">
-    </el-pagination>
+      @current-change="pageCurrentChangeHandle"
+    />
   </div>
 </template>
 <script>

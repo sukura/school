@@ -38,7 +38,7 @@
         </el-menu>
       </div>
       <!-- 有数据时显示列表，无数据时添加none类名 -->
-      <div class="list-right">
+      <div class="list-right" :class="isNone ? 'none': ''">
         <dl v-for="(item, index) in tableData" :key="index" :class="'color' + item.status">
           <div :class="'jiao'+ item.status" />
           <dt><img src="../../assets/user.jpg" alt=""></dt>
@@ -68,7 +68,8 @@ export default {
         disabledDate(time) {
           return time.getTime() > Date.now()
         }
-      }
+      },
+      isNone: false
     }
   },
   created() {
@@ -79,7 +80,14 @@ export default {
   },
   methods: {
     getTablelist() {
+      if (this.tableData.length === 0) {
+        this.isNone = true
+      } else {
+        this.isNone = false
+      }
       this.$http.post('/api/arrive/list').then(response => {
+        console.log(response.data.data)
+        console.log(this.tableData)
         this.tableData = response.data.data
       }).catch(() => {})
     }
@@ -204,7 +212,19 @@ export default {
       }
     }
     .none {
-      background: #ffffff;
+      background: #ffffff url(../../assets/bg.png) no-repeat center 200px;
+      position: relative;
+    }
+    .none:after {
+      display: block;
+      width: 200px;
+      height: 30px;
+      content: '暂无发现到校记录';
+      color: #999;
+      position: absolute;
+      left: 50%;
+      top: 230px;
+      transform: translate(-50%, 80px);
     }
   }
 }
