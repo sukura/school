@@ -272,6 +272,9 @@ export default {
     .del {
       color: red;
     }
+    .el-table {
+      margin-bottom: 20px;
+    }
   }
 }
 // 查看详情里面的弹窗

@@ -1,4 +1,4 @@
-<!-- 到校查询 今日课程 -->
+<!-- 体育课 今日课程 -->
 <template>
   <div class="record">
     <mu-container class="demo-container is-stripe fixedHead">

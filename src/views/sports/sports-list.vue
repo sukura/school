@@ -1,4 +1,4 @@
-<!-- 到校查询 到校查询记录 -->
+<!-- 体育课 历史课程 -->
 <template>
   <div class="record">
     <mu-container class="demo-container is-stripe fixedHead">

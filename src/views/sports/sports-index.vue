@@ -41,15 +41,15 @@ export default {
     routerJump(index) {
       this.$store.state.arriveStatus = index
       if (index === 1) {
-        // 进出记录
+        // 今日课程
         this.$router.push({
-          path: 'arriveRecord'
+          path: 'sportsDay'
         })
       } else if (index === 2) {
         this.$store.state.arriveStatus = 2
-        // 今日课程
+        // 历史课程
         this.$router.push({
-          path: 'arrivelist'
+          path: 'sportslist'
         })
       }
     },
