@@ -1,4 +1,4 @@
-<!-- 体育课 -->
+<!-- 今日课程 -->
 <template>
   <div class="workPage arriveSchool">
     <!-- 今日课程头部 -->
@@ -41,15 +41,15 @@ export default {
     routerJump(index) {
       this.$store.state.arriveStatus = index
       if (index === 1) {
-        // 体育课 今日课程
+        // 进出记录
         this.$router.push({
-          path: 'sportsDay'
+          path: 'arriveRecord'
         })
       } else if (index === 2) {
         this.$store.state.arriveStatus = 2
-        // 体育课 历史课程
+        // 今日课程
         this.$router.push({
-          path: 'sportslist'
+          path: 'arrivelist'
         })
       }
     },
@@ -57,12 +57,12 @@ export default {
       this.$http.post('/api/sports/attendance/Page', {
         curPage: 1,
         pageSize: 10
-      }).then(({ data }) => {
+      }).then(({data}) => {
         this.tableData = data.list
         console.log(data)
       }).catch((err) => {
         console.log(err)
-      })
+      });      
     }
     // /sports/attendance/Page
   }

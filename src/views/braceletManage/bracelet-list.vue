@@ -15,7 +15,7 @@
             <el-date-picker v-model="formData.dataDay" type="date" :picker-options="pickerOptions" :clearable="false" placeholder="选择日期" />
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="onSearch">查询</el-button>
+            <el-button type="primary" @click="queryDataList()">查询</el-button>
           </el-form-item>
         </el-form>
       </mu-flex>
@@ -24,11 +24,11 @@
     <div class="table">
       <h2 class="title">
         手环列表
-        <el-button type="primary" class="btn" icon="el-icon-download" size="small" @click="downLoad">下载模版</el-button>
+        <el-button type="primary" class="btn" icon="el-icon-download" size="small" @click="export2Excel(exportTable, '手环管理列表')">下载模版</el-button>
         <el-button type="primary" class="btn" icon="el-icon-circle-plus-outline" size="small" @click="addExport">批量导入</el-button>
         <el-button type="primary" class="btn" icon="el-icon-circle-plus-outline" size="small" @click="dialog2 = true">单个添加</el-button>
       </h2>
-      <el-table :data="tableData" stripe height="500">
+      <el-table v-loading="dataListLoading" :data="dataList" stripe height="500" @selection-change="dataListSelectionChangeHandle">
         <el-table-column label="手环编号" prop="id" align="center" />
         <el-table-column label="手环ID" prop="Mac" align="center" />
         <el-table-column label="手环状态" prop="BraceletStatus" align="center">
@@ -55,6 +55,15 @@
           </template>
         </el-table-column>
       </el-table>
+      <el-pagination
+        background
+        :current-page="page"
+        :page-sizes="[10, 20, 50, 100]"
+        :page-size="limit"
+        :total="total"
+        layout="sizes, prev, pager, next, jumper"
+        @size-change="pageSizeChangeHandle"
+        @current-change="pageCurrentChangeHandle" />
     </div>
     <!-- 查看记录弹窗 -->
     <mu-dialog width="460" :open.sync="dialog1">
@@ -127,9 +136,16 @@
 </template>
 <script>
 // 状态 0 已绑定 1 备用 2 故障 3 丢失
+import mixinViewModule from '@/mixins/view-module'
 export default {
+  mixins: [mixinViewModule],
   data() {
     return {
+      mixinViewModuleOptions: {
+        //  获取手环列表数据
+        getDataListURL: '/api/handManage/page',
+        getDataListIsPage: true
+      },
       dialog1: false,
       dialogTitle: '手环记录',
       dialog2: false,
@@ -141,6 +157,14 @@ export default {
         number: '',
         status: '',
         dataDay: ''
+      },
+      exportTable: {
+        id: '手环编号',
+        Mac: '手环ID',
+        BraceletStatus: '手环状态',
+        CreateTime: '入库日期',
+        attendance: '操作',
+        time: '操作记录'
       },
       pickerOptions: {
         disabledDate(time) {
@@ -163,33 +187,7 @@ export default {
   created() {
     this.$store.state.handStatus = 1
   },
-  mounted() {
-    this.getTbalelist()
-  },
   methods: {
-    onSearch() {
-      this.$message.closeAll()
-      this.$message({
-        type: 'success',
-        message: '开始查询',
-        offset: 200
-      })
-    },
-    //  获取手环列表数据
-    getTbalelist() {
-      this.$http.post('/api/handManage/search').then(resposne => {
-        this.tableData = resposne.data.data
-      }).catch(() => {})
-    },
-    // 下载模版
-    downLoad() {
-      this.$message.closeAll()
-      this.$message({
-        type: 'success',
-        message: '下载模版',
-        offset: 200
-      })
-    },
     // 批量导入
     addExport() {
       this.$message.closeAll()

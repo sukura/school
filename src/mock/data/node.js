@@ -1,11 +1,11 @@
-import Mock from 'mockjs'
+import Mock from 'mockjs';
 
-const Nodes = []
+const Nodes = [];
 
 for (let i = 0; i < 86; i++) {
   Nodes.push(Mock.mock({
     id: Mock.Random.id(),
-    code: /[a-z][A-Z][0-9]/,
+    code:/[a-z][A-Z][0-9]/,
     name: Mock.Random.province(),
     address: Mock.Random.ip(),
     'domain|2-3': 2,
@@ -14,8 +14,8 @@ for (let i = 0; i < 86; i++) {
     status: Mock.Random.integer(0, 9),
     nodeConfig: Mock.Random.integer(0, 9),
     updateTime: Mock.Random.date(),
-    createTime: Mock.Random.date()
-  }))
+    createTime: Mock.Random.date(),
+  }));
 }
 
-export { Nodes }
+export { Nodes };

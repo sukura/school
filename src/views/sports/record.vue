@@ -1,4 +1,4 @@
-<!-- 体育课 今日课程 -->
+<!-- 到校查询 今日课程 -->
 <template>
   <div class="record">
     <mu-container class="demo-container is-stripe fixedHead">
@@ -70,13 +70,13 @@ export default {
         curPage: 1,
         pageSize: 10,
         ...this.formData
-      }).then(({ data }) => {
+      }).then(({data}) => {
         this.tableData = data.list
         console.log(data)
       }).catch((err) => {
         console.log(err)
-      })
-    }
+      });
+    },    
     // getTablelist() {
     //   this.$http.post('/api/school/record/list').then(response => {
     //     this.tableData = response.data.data

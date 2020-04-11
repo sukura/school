@@ -107,7 +107,7 @@ export default {
           itemWidth: 10,
           itemHeight: 10,
           icon: 'circle',
-          show: false
+          show: false,
         },
         series: [{
           // name: '考勤详情',
