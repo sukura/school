@@ -3,11 +3,14 @@ import MockAdapter from 'axios-mock-adapter'
 import { LoginUsers, Users } from './data/user'
 import { Nodes } from './data/node'
 import { Sports } from './data/sports'
+import { Arrives, ArrivesList } from './data/school'
 import { Wristband } from './data/wristband'
 /* eslint-disable */
 let _Users = Users
 let _Nodes = Nodes
 let _Sports = Sports
+let _Arrives = Arrives
+let _ArrivesList = ArrivesList
 let _Wristband = Wristband
 export default {
   /**
@@ -200,14 +203,15 @@ export default {
       })
     })
 
+    // 到校查询 进出记录表
     mock.onGet('/school/arriverecord/page').reply(config => {
       const {page, limit, name, studentId} = config.params
-      let mockSports = _Sports.filter(node => {
+      let mockArrives = _Arrives.filter(node => {
         if ((name && node.name.indexOf(name) == -1) || (studentId && Number(studentId) === node.studentId)) return false
         return true
       })
-      let total = mockSports.length
-      mockSports = mockSports.filter((u, index) => index < limit * page && index >= limit * (page - 1))
+      let total = mockArrives.length
+      mockArrives = mockArrives.filter((u, index) => index < limit * page && index >= limit * (page - 1))
 
       return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -215,13 +219,25 @@ export default {
             code: 0,
             data: {
               total: total,
-              list: mockSports
+              list: mockArrives
             }
           }])
         }, 1000)
       })
     })
+
+    mock.onGet('/school/arrive/list').reply(config => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            code: 0,
+            data: _ArrivesList
+          }])
+        }, 1000)
+      })
+    })
   
+
     //手环列表（分页）
     mock.onGet('/handManage/page').reply(config => {
       const {page, limit, id} = config.params

@@ -63,7 +63,8 @@
         :total="total"
         layout="sizes, prev, pager, next, jumper"
         @size-change="pageSizeChangeHandle"
-        @current-change="pageCurrentChangeHandle" />
+        @current-change="pageCurrentChangeHandle"
+      />
     </div>
     <!-- 查看记录弹窗 -->
     <mu-dialog width="460" :open.sync="dialog1">
@@ -143,7 +144,7 @@ export default {
     return {
       mixinViewModuleOptions: {
         //  获取手环列表数据
-        getDataListURL: '/api/handManage/page',
+        getDataListURL: '/handManage/page',
         getDataListIsPage: true
       },
       dialog1: false,

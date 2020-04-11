@@ -51,8 +51,8 @@
       :total="total"
       layout="sizes, prev, pager, next, jumper"
       @size-change="pageSizeChangeHandle"
-      @current-change="pageCurrentChangeHandle">
-    </el-pagination>
+      @current-change="pageCurrentChangeHandle"
+    />
   </div>
 </template>
 <script>
@@ -62,7 +62,7 @@ export default {
   data() {
     return {
       mixinViewModuleOptions: {
-        getDataListURL: '/api/school/arriverecord/page',
+        getDataListURL: '/school/arriverecord/page',
         getDataListIsPage: true
       },
       formData: {
@@ -82,6 +82,9 @@ export default {
         }
       }
     }
+  },
+  mounted() {
+    console.log('datalist', this.dataList)
   },
   created() {
     this.$store.state.arriveStatus = 1

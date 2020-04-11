@@ -11,17 +11,17 @@ import echarts from 'echarts'
 import './styles/index.scss'
 import './icons/index'
 import axios from 'axios'
-import './mock/index'
+// import './mock/index'
 import Mock from './mock/mock'
-Mock.start();
+// 配置baseUrl
+axios.defaults.baseURL = '/api'
+Mock.start()
 Vue.use(ElementUI, {
   size: 'small'
 })
 Vue.use(MuseUI)
 Vue.prototype.$echarts = echarts
 Vue.prototype.$http = axios
-// 配置baseUrl
-axios.defaults.baseURL = '/api'
 
 Vue.config.productionTip = false
 
