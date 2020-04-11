@@ -106,6 +106,22 @@ export default new Router({
           component: () => import('../views/sports/sports-list.vue')
         }
       ]
+    }, {
+      path: '/userCenter', // 用户中心
+      name: 'userCenter',
+      redirect: '/userCenter/studentManage',
+      component: () => import('../views/userCenter/user-index.vue'),
+      children: [
+        {
+          path: 'studentManage', // 学生管理
+          name: 'studentManage',
+          component: () => import('../views/userCenter/student-manage.vue')
+        }, {
+          path: 'teacherManage', // 教师管理
+          name: 'teacherManage',
+          component: () => import('../views/userCenter/teacher-manage.vue')
+        }
+      ]
     }
   ]
 })

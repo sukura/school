@@ -10,7 +10,9 @@ export default new Vuex.Store({
     // 到校查询
     arriveStatus: 1,
     // 手环中心
-    handStatus: 1
+    handStatus: 1,
+    // 用户中心
+    userStatus: 1
   },
   mutations: {
 
