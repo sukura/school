@@ -26,7 +26,7 @@
             <mu-list-item button>
               <mu-list-item-title>修改密码</mu-list-item-title>
             </mu-list-item>
-            <mu-list-item button>
+            <mu-list-item button @click="loginOut">
               <mu-list-item-title>退出</mu-list-item-title>
             </mu-list-item>
           </mu-list>
@@ -48,6 +48,17 @@ export default {
     homePage() {
       this.$router.push({
         path: '/home'
+      })
+    },
+    // 退出
+    loginOut() {
+      this.$message({
+        type: 'success',
+        message: '退出成功',
+        offset: 200
+      })
+      this.$router.push({
+        path: '/login'
       })
     }
   }
