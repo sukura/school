@@ -1,5 +1,5 @@
-import Mock from 'mockjs';
-const Wristband = [];
+import Mock from 'mockjs'
+const Wristband = []
 
 for (let i = 0; i < 60; i++) {
   Wristband.push(Mock.mock({
@@ -11,8 +11,8 @@ for (let i = 0; i < 60; i++) {
     BraceletColor: Mock.mock('@color'),
     CreateTime: Mock.Random.date(),
     EquipmentType: Mock.Random.integer(0, 1),
-    AnotherName: Mock.mock('@pick(["手表", "手环", "watch", "手机", "平板"])'),
-  }));
+    AnotherName: Mock.mock('@pick(["手表", "手环", "watch", "手机", "平板"])')
+  }))
 }
 
-export { Wristband };
+export { Wristband }

@@ -5,18 +5,18 @@
       <div class="head">
         <h2>按搜索条件查询</h2>
         <p>
-          <el-input placeholder="请输入姓名或学号" v-model="searchVal">
-            <el-button slot="append" icon="el-icon-search"></el-button>
+          <el-input v-model="searchVal" placeholder="请输入姓名或学号">
+            <el-button slot="append" icon="el-icon-search" />
           </el-input>
         </p>
       </div>
-      <el-form :model="formData" :inline="true" ref="form" label-width="80px">
+      <el-form ref="formData" :model="formData" :inline="true" label-width="80px">
         <el-row>
           <el-form-item label="姓名">
-            <el-input v-model="formData.name" placeholder="请输入姓名" />          
+            <el-input v-model="formData.name" placeholder="请输入姓名" />
           </el-form-item>
           <el-form-item label="学号">
-            <el-input v-model="formData.studentId" placeholder="请输入学号" />          
+            <el-input v-model="formData.studentId" placeholder="请输入学号" />
           </el-form-item>
           <el-form-item label="组织结构">
             <el-select v-model="formData.organManage" placeholder="请选择组织结构">
@@ -117,16 +117,17 @@
       </mu-appbar>
       <div class="dialogList">
         <h2>填写基本信息</h2>
-        <el-form :model="userForm" ref="userForm" label-width="100px">
+        <el-form ref="userForm" :model="userForm" label-width="100px">
           <el-form-item label="设置头像">
             <el-upload
               class="avatar-uploader"
               action="https://jsonplaceholder.typicode.com/posts/"
               :show-file-list="false"
               :on-success="handleAvatarSuccess"
-              :before-upload="beforeAvatarUpload">
+              :before-upload="beforeAvatarUpload"
+            >
               <img v-if="userForm.imageUrl" :src="userForm.imageUrl" class="avatar">
-              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              <i v-else class="el-icon-plus avatar-uploader-icon" />
             </el-upload>
           </el-form-item>
           <el-form-item label="学号" prop="studentId">
@@ -160,8 +161,8 @@
       </mu-appbar>
       <div class="dialogList">
         <p style="width: 100%; padding: 0 20px 10px;">
-          <el-input placeholder="请输入手环编号或手环ID" v-model="searchVal2">
-            <el-button slot="append" icon="el-icon-search"></el-button>
+          <el-input v-model="searchVal2" placeholder="请输入手环编号或手环ID">
+            <el-button slot="append" icon="el-icon-search" />
           </el-input>
         </p>
         <h2>备用手环列表</h2>
@@ -331,11 +332,11 @@ export default {
       this.dialog1 = true
     },
     handleAvatarSuccess(res, file) {
-      this.userForm.imageUrl = URL.createObjectURL(file.raw);
+      this.userForm.imageUrl = URL.createObjectURL(file.raw)
     },
     beforeAvatarUpload(file) {
-      const isJPG = file.type === 'image/jpeg';
-      const isLt2M = file.size / 1024 / 1024 < 2;
+      const isJPG = file.type === 'image/jpeg'
+      const isLt2M = file.size / 1024 / 1024 < 2
 
       if (!isJPG) {
         this.$message.error('上传头像图片只能是 JPG 格式!')

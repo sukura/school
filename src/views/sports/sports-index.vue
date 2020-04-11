@@ -57,12 +57,12 @@ export default {
       this.$http.post('/api/sports/attendance/Page', {
         curPage: 1,
         pageSize: 10
-      }).then(({data}) => {
+      }).then(({ data }) => {
         this.tableData = data.list
         console.log(data)
       }).catch((err) => {
         console.log(err)
-      });      
+      })
     }
     // /sports/attendance/Page
   }
