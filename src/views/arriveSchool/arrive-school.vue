@@ -38,8 +38,8 @@
         </el-menu>
       </div>
       <!-- 有数据时显示列表，无数据时添加none类名 -->
-      <div class="list-right" :class="isNone ? 'none': ''">
-        <dl v-for="(item, index) in tableData" :key="index" :class="'color' + item.status">
+      <div class="list-right" :class="dataListLoading ? 'none': ''">
+        <dl v-for="(item, index) in dataList" :key="index" :class="'color' + item.status">
           <div :class="'jiao'+ item.status" />
           <dt><img src="../../assets/user.jpg" alt=""></dt>
           <dd>
@@ -57,9 +57,14 @@
   </div>
 </template>
 <script>
+import mixinViewModule from '@/mixins/view-module'
 export default {
+  mixins: [mixinViewModule],
   data() {
     return {
+      mixinViewModuleOptions: {
+        getDataListURL: '/school/arrive/list'
+      },
       formData: {
         dataDay: ''
       },
