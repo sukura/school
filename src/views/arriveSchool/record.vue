@@ -83,9 +83,6 @@ export default {
       }
     }
   },
-  mounted() {
-    console.log('datalist', this.dataList)
-  },
   created() {
     this.$store.state.arriveStatus = 1
   }
