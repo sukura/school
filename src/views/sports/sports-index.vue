@@ -8,8 +8,8 @@
           <h2><img src="../../assets/logo.png" alt=""></h2>
           <h3>体育课</h3>
           <ol class="nav">
-            <li :class="$store.state.arriveStatus === 1 ? 'active' : ''" @click="routerJump(1)">今日课程</li>
-            <li :class="$store.state.arriveStatus === 2 ? 'active' : ''" @click="routerJump(2)">历史课程</li>
+            <li :class="$store.state.arriveStatus === 1 ? 'active' : ''" @click="routerJump(1, 'sportsDay')">今日课程</li>
+            <li :class="$store.state.arriveStatus === 2 ? 'active' : ''" @click="routerJump(2, 'sportslist')">历史课程</li>
           </ol>
         </div>
         <user-info />
@@ -35,36 +35,12 @@ export default {
   },
   created() {
     this.active = this.$store.state.arriveStatus
-    this.getAttendance()
   },
   methods: {
-    routerJump(index) {
+    routerJump(index, name) {
       this.$store.state.arriveStatus = index
-      if (index === 1) {
-        // 今日课程
-        this.$router.push({
-          path: 'sportsDay'
-        })
-      } else if (index === 2) {
-        this.$store.state.arriveStatus = 2
-        // 历史课程
-        this.$router.push({
-          path: 'sportslist'
-        })
-      }
-    },
-    getAttendance() {
-      this.$http.post('/api/sports/attendance/Page', {
-        curPage: 1,
-        pageSize: 10
-      }).then(({ data }) => {
-        this.tableData = data.list
-        console.log(data)
-      }).catch((err) => {
-        console.log(err)
-      })
+      this.$router.push({ path: name })
     }
-    // /sports/attendance/Page
   }
 }
 </script>
