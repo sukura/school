@@ -2,13 +2,14 @@ import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import { LoginUsers, Users } from './data/user'
 import { Nodes } from './data/node'
-import { Sports } from './data/sports'
+import { Sports, Course } from './data/sports'
 import { Arrives, ArrivesList } from './data/school'
 import { Wristband } from './data/wristband'
 /* eslint-disable */
 let _Users = Users
 let _Nodes = Nodes
 let _Sports = Sports
+let _Course = Course
 let _Arrives = Arrives
 let _ArrivesList = ArrivesList
 let _Wristband = Wristband
@@ -90,6 +91,29 @@ export default {
             data: {
               total: total,
               list: mockSports
+            }
+          }])
+        }, 1000)
+      })
+    })
+
+    //体育课 历史课程 列表（分页）
+    mock.onGet('/sports/history/page').reply(config => {
+      const {page, limit, name} = config.params
+      let mockCourse = _Course.filter(node => {
+        if ((name && node.name.indexOf(name) == -1)) return false
+        return true
+      })
+      let total = mockCourse.length
+      mockCourse = mockCourse.filter((u, index) => index < limit * page && index >= limit * (page - 1))
+
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            code: 0,
+            data: {
+              total: total,
+              list: mockCourse
             }
           }])
         }, 1000)
