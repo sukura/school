@@ -12,7 +12,9 @@ export default new Vuex.Store({
     // 手环中心
     handStatus: 1,
     // 用户中心
-    userStatus: 1
+    userStatus: 1,
+    // 体育课
+    sportStatus: 1
   },
   mutations: {
 

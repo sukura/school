@@ -8,8 +8,8 @@
           <h2><img src="../../assets/logo.png" alt=""></h2>
           <h3>体育课</h3>
           <ol class="nav">
-            <li :class="$store.state.arriveStatus === 1 ? 'active' : ''" @click="routerJump(1, 'sportsDay')">今日课程</li>
-            <li :class="$store.state.arriveStatus === 2 ? 'active' : ''" @click="routerJump(2, 'sportslist')">历史课程</li>
+            <li :class="$store.state.sportStatus === 1 ? 'active' : ''" @click="routerJump(1, 'sportsDay')">今日课程</li>
+            <li :class="$store.state.sportStatus === 2 ? 'active' : ''" @click="routerJump(2, 'sportslist')">历史课程</li>
           </ol>
         </div>
         <user-info />
@@ -34,11 +34,11 @@ export default {
     }
   },
   created() {
-    this.active = this.$store.state.arriveStatus
+    this.active = this.$store.state.sportStatus
   },
   methods: {
     routerJump(index, name) {
-      this.$store.state.arriveStatus = index
+      this.$store.state.sportStatus = index
       this.$router.push({ path: name })
     }
   }

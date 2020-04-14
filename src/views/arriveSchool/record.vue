@@ -118,6 +118,7 @@ export default {
     }
   }
   .el-table {
+    margin-bottom: 20px;
     .leave {
       color: #909BB0;
     }

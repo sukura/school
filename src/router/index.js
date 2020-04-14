@@ -99,7 +99,7 @@ export default new Router({
         {
           path: 'sportsDay', // 体育课 - 今日课程
           name: 'sportsDay',
-          component: () => import('../views/sports/record.vue')
+          component: () => import('../views/sports/sport-day.vue')
         }, {
           path: 'sportslist', // 体育课 - 历史课程
           name: 'sportslist',

@@ -6,16 +6,16 @@
         <mu-flex class="flex-demo" justify-content="center">
           <el-form ref="formData" :model="formData" :inline="true" label-width="70px">
             <el-form-item label="课程名称">
-              <el-input v-model="formData.name" placeholder="请输入课程名称"></el-input>
+              <el-input v-model="formData.name" placeholder="请输入课程名称" />
             </el-form-item>
             <el-form-item label="任课老师">
-              <el-input v-model="formData.teacher" placeholder="请输入任课老师"></el-input>
+              <el-input v-model="formData.teacher" placeholder="请输入任课老师" />
             </el-form-item>
             <el-form-item label="课程类型">
-              <el-input v-model="formData.type" placeholder="请输入课程类型"></el-input>
+              <el-input v-model="formData.type" placeholder="请输入课程类型" />
             </el-form-item>
             <el-form-item label="课程内容">
-              <el-input v-model="formData.contet" placeholder="请输入课程内容"></el-input>
+              <el-input v-model="formData.contet" placeholder="请输入课程内容" />
             </el-form-item>
             <el-form-item>
               <el-button type="primary">查看</el-button>
@@ -29,7 +29,7 @@
       <h2 class="title">
         课程列表
         <el-button type="primary" @click="export2Excel(exportTable, '历史课程列表')">导出</el-button>
-        <el-date-picker class="picker" v-model="formData.dataDay" type="date" :picker-options="pickerOptions" :clearable="false" placeholder="选择日期" />
+        <el-date-picker v-model="formData.dataDay" class="picker" type="date" :picker-options="pickerOptions" :clearable="false" placeholder="选择日期" />
       </h2>
       <el-table v-loading="dataListLoading" :data="dataList" stripe height="500" @selection-change="dataListSelectionChangeHandle">
         <el-table-column label="上课时间" prop="rank" align="center" />
@@ -42,7 +42,7 @@
           <template slot-scope="{row}">
             <div>
               <el-button type="text" @click="viewInfo(row.id)">详情</el-button>
-              <el-button type="text" @click="pkHandle(row.id)">PK</el-button>
+              <!-- <el-button type="text" @click="pkHandle(row.id)">PK</el-button> -->
             </div>
           </template>
         </el-table-column>
@@ -95,7 +95,7 @@ export default {
     }
   },
   created() {
-    this.$store.state.handStatus = 1
+    this.$store.state.sportStatus = 2
   },
   methods: {
     // 查看记录
@@ -142,7 +142,7 @@ export default {
     .el-table {
       margin-bottom: 20px;
     }
-  }  
+  }
   .demo-container {
     background: #ffffff;
     height: 56px;

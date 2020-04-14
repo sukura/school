@@ -72,27 +72,46 @@
         </mu-button>
       </mu-appbar>
       <div class="activeDialog">
-        <el-progress type="circle" :percentage="25">出勤率</el-progress>
-        <el-table :data="list" stripe>
-          <el-table-column type="selection" width="55" />
-          <el-table-column label="参与人员" prop="name" align="center" />
-          <el-table-column label="参与度" prop="attendance" align="center">
-            <template slot-scope="scope">
-              <div>
-                <el-progress :percentage="scope.row.attendance" color="#7894FF" :format="format" />
-              </div>
-            </template>
-          </el-table-column>
-          <el-table-column label="状态" prop="time" align="center">
-            <template slot-scope="scope">
-              <span v-if="scope.row.status === 1" class="color1">&bull; 正常</span>
-              <span v-if="scope.row.status === 2" class="color2">&bull; 迟到</span>
-              <span v-if="scope.row.status === 3" class="color3">&bull; 早退</span>
-              <span v-if="scope.row.status === 4" class="color4">&bull; 缺勤</span>
-              <span v-if="scope.row.status === 5" class="color5">&bull; 迟到&早退</span>
-            </template>
-          </el-table-column>
-        </el-table>
+        <div class="active-top">
+          <div class="cont-left">
+            <h2>出勤率</h2>
+            <div class="attendance">
+              <el-progress type="circle" :percentage="25" />
+              <ol>
+                <li>参会名称：三年级二班国庆活动</li>
+                <li>参会地点：学校操场</li>
+                <li>参会时间：13:00 - 17:00</li>
+                <li>参会人数：22 人</li>
+              </ol>
+            </div>
+          </div>
+          <div class="cont-right none">
+            <h2>缺勤人员</h2>
+          </div>
+        </div>
+        <div class="active-table">
+          <h2>参与人员</h2>
+          <el-table :data="list" stripe :max-height="200">
+            <el-table-column type="selection" width="55" />
+            <el-table-column label="参与人员" prop="name" align="center" />
+            <el-table-column label="参与度" prop="attendance" align="center">
+              <template slot-scope="scope">
+                <div>
+                  <el-progress :percentage="scope.row.attendance" color="#7894FF" :format="format" />
+                </div>
+              </template>
+            </el-table-column>
+            <el-table-column label="状态" prop="time" align="center">
+              <template slot-scope="scope">
+                <span v-if="scope.row.status === 1" class="color1">&bull; 正常</span>
+                <span v-if="scope.row.status === 2" class="color2">&bull; 迟到</span>
+                <span v-if="scope.row.status === 3" class="color3">&bull; 早退</span>
+                <span v-if="scope.row.status === 4" class="color4">&bull; 缺勤</span>
+                <span v-if="scope.row.status === 5" class="color5">&bull; 迟到&早退</span>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
       </div>
     </mu-dialog>
   </div>
@@ -224,11 +243,61 @@ export default {
 }
 // 弹窗里面表单
 .activeDialog {
-  padding: 24px;
-  .el-form {
-    .el-select,
-    .el-date-editor.el-input {
+  background: #efefef;
+  h2 {
+    height: 54px;
+    line-height: 54px;
+    padding-left: 20px;
+    border-bottom: 1px solid #efefef;
+    background: #fff;
+  }
+  .active-top {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    .cont-left {
+      width: 395px;
+      height: 250px;
+      background: #ffffff;
+      .attendance {
+        display: flex;
+        justify-content: flex-start;
+        .el-progress {
+          margin: 30px 20px;
+        }
+        .el-progress:after {
+          display: block;
+          content: '出勤率';
+          text-align: center;
+          width: 100%;
+          position: absolute;
+          bottom: 30px;
+        }
+        ol {
+          margin: 30px;
+          li {
+            line-height: 30px;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+    .cont-right {
+      width: 395px;
+      background: #ffffff;
+    }
+    .none {
+      background: #fff url(../../assets/bg.png) no-repeat center center;
+      position: relative;
+    }
+    .none:after {
+      display: block;
+      content: '暂无缺勤人员';
       width: 100%;
+      text-align: center;
+      color: #d8d8d8;
+      position: absolute;
+      bottom: 50px;
     }
   }
 }
