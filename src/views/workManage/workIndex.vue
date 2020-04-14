@@ -1,18 +1,20 @@
 <!-- 考勤管理 -->
 <template>
-  <div class="workPage">
+  <div class="workPage arriveSchool">
     <!-- 考勤管理头部 -->
     <div class="header">
       <div class="head-nav">
-        <h2><img src="../../assets/logo.png" alt=""></h2>
-        <h3>考勤管理</h3>
-        <ol class="nav">
-          <li :class="$store.state.workStatus === 1 ? 'active' : ''" @click="routerJump(1)">我的课程</li>
-          <li :class="$store.state.workStatus === 2 ? 'active' : ''" @click="routerJump(2)">我的班级</li>
-          <li :class="$store.state.workStatus === 3 ? 'active' : ''" @click="routerJump(3)">临时活动考勤</li>
-          <li :class="$store.state.workStatus === 4 ? 'active' : ''" @click="routerJump(4)">综合查询</li>
-          <li :class="$store.state.workStatus === 5 ? 'active' : ''" @click="routerJump(5)">考勤统计</li>
-        </ol>
+        <div class="head-after">
+          <h2><img src="../../assets/logo.png" alt=""></h2>
+          <h3>考勤管理</h3>
+          <ol class="nav">
+            <li :class="$store.state.workStatus === 1 ? 'active' : ''" @click="routerJump(1)">我的课程</li>
+            <li :class="$store.state.workStatus === 2 ? 'active' : ''" @click="routerJump(2)">我的班级</li>
+            <li :class="$store.state.workStatus === 3 ? 'active' : ''" @click="routerJump(3)">临时活动考勤</li>
+            <li :class="$store.state.workStatus === 4 ? 'active' : ''" @click="routerJump(4)">综合查询</li>
+            <!-- <li :class="$store.state.workStatus === 5 ? 'active' : ''" @click="routerJump(5)">考勤统计</li> -->
+          </ol>
+        </div>
         <user-info />
       </div>
     </div>
@@ -70,10 +72,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.workPage {
+.arriveSchool {
   width: 100%;
   padding-top: 56px;
   box-sizing: border-box;
+  .header {
+    .head-nav {
+      .head-after {
+        display: flex;
+        .nav {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
   .work-cont {
     width: 80%;
     min-width: 1104px;

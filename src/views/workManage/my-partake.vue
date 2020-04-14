@@ -72,6 +72,7 @@
         </mu-button>
       </mu-appbar>
       <div class="activeDialog">
+        <el-progress type="circle" :percentage="25">出勤率</el-progress>
         <el-table :data="list" stripe>
           <el-table-column type="selection" width="55" />
           <el-table-column label="参与人员" prop="name" align="center" />
