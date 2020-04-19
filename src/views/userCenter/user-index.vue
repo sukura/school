@@ -8,9 +8,11 @@
           <h2><img src="../../assets/logo.png" alt=""></h2>
           <h3>用户中心</h3>
           <ol class="nav">
-            <li :class="$store.state.userStatus === 1 ? 'active' : ''" @click="routerJump(1)">学生管理</li>
-            <li :class="$store.state.userStatus === 2 ? 'active' : ''" @click="routerJump(2)">教师管理</li>
-            <li :class="$store.state.userStatus === 3 ? 'active' : ''" @click="routerJump(2)">角色管理</li>
+            <li :class="$store.state.userStatus === 1 ? 'active' : ''" @click="routerJump(1, 'studentOrign')">学生组织架构</li>
+            <li :class="$store.state.userStatus === 2 ? 'active' : ''" @click="routerJump(2, 'teacherOrign')">教师组织架构</li>
+            <li :class="$store.state.userStatus === 3 ? 'active' : ''" @click="routerJump(3, 'studentManage')">学生管理</li>
+            <li :class="$store.state.userStatus === 4 ? 'active' : ''" @click="routerJump(4, 'teacherManage')">教师管理</li>
+            <li :class="$store.state.userStatus === 5 ? 'active' : ''" @click="routerJump(5, 'roleManage')">角色管理</li>
           </ol>
         </div>
         <user-info />
@@ -38,20 +40,11 @@ export default {
     this.active = this.$store.state.userStatus
   },
   methods: {
-    routerJump(index) {
+    routerJump(index, pathName) {
       this.$store.state.userStatus = index
-      if (index === 1) {
-        // 学生管理
-        this.$router.push({
-          path: 'studentManage'
-        })
-      } else if (index === 2) {
-        this.$store.state.arriveStatus = 2
-        // 教师管理
-        this.$router.push({
-          path: 'teacherManage'
-        })
-      }
+      this.$router.push({
+        path: pathName
+      })
     }
   }
 }

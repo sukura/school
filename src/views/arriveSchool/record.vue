@@ -30,7 +30,7 @@
     <el-table v-loading="dataListLoading" :data="dataList" stripe height="600" @selection-change="dataListSelectionChangeHandle">
       <el-table-column label="姓名" prop="name">
         <template slot-scope="{row}">
-          <el-avatar :size="'small'" :src="row.avatar" />
+          <!-- <el-avatar :size="'small'" :src="row.avatar" /> -->
           {{ row.name }}
         </template>
       </el-table-column>

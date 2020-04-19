@@ -23,9 +23,7 @@
               <el-option label="组织1" value="1" />
             </el-select>
           </el-form-item>
-        </el-row>
-        <el-row class="textR">
-          <el-form-item>
+          <el-form-item class="textR">
             <el-button type="primary" size="mini">查询</el-button>
           </el-form-item>
         </el-row>
@@ -43,12 +41,12 @@
             <el-avatar size="medium" :src="scope.row.imgUrl" class="userImg" />
           </template>
         </el-table-column>
-        <el-table-column prop="studentId" label="学号" min-width="140" />
+        <!-- <el-table-column prop="studentId" label="学号" min-width="140" /> -->
         <el-table-column prop="studentId" label="工号" min-width="140" />
         <el-table-column prop="studentName" label="姓名" min-width="80" />
         <el-table-column prop="sex" label="性别" min-width="80" />
         <el-table-column prop="classId" label="班级" />
-        <el-table-column prop="classId" label="部门" />
+        <el-table-column prop="className" label="部门" />
         <el-table-column label="启用" min-width="100">
           <template slot-scope="scope">
             <el-switch v-model="scope.row.status" />
@@ -191,7 +189,7 @@ export default {
       dialog1: false,
       dialog2: false,
       addDialog: false,
-      addTitle: '添加用户',
+      addTitle: '编辑用户',
       dialogTitle: '已绑定详情',
       searchVal: '',
       searchVal2: '',
@@ -257,16 +255,18 @@ export default {
           classId: '一年级1班',
           status: true,
           id: 1,
-          handId: 123
+          handId: 123,
+          className: '语文组'
         }, {
           imgUrl: require('../../assets/user.jpg'),
           studentId: '20200101',
-          studentName: '李沐雪',
+          studentName: '袁飞',
           sex: '女',
           classId: '一年级1班',
           status: false,
           id: 2,
-          handId: 456
+          handId: 456,
+          className: '数学组'
         }
       ],
       handDetail: {
@@ -296,7 +296,7 @@ export default {
     }
   },
   created() {
-    this.$store.state.userStatus = 2
+    this.$store.state.userStatus = 4
   },
   methods: {
     // 删除功能

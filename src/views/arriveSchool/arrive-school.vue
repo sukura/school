@@ -26,14 +26,14 @@
         <h2>学校年/班级</h2>
         <el-menu default-active="1">
           <el-submenu index="1">
-            <template slot="title"><span>高一</span></template>
-            <el-menu-item index="1-1">高一 (1) 班</el-menu-item>
-            <el-menu-item index="1-2">高一 (2) 班</el-menu-item>
+            <template slot="title"><span>一年级</span></template>
+            <el-menu-item index="1-1">一年级 (1) 班</el-menu-item>
+            <el-menu-item index="1-2">一年级 (2) 班</el-menu-item>
           </el-submenu>
           <el-submenu index="2">
-            <template slot="title"><span>高二</span></template>
-            <el-menu-item index="2-1">高二 (1) 班</el-menu-item>
-            <el-menu-item index="2-2">高二 (2) 班</el-menu-item>
+            <template slot="title"><span>二年级</span></template>
+            <el-menu-item index="2-1">二年级 (1) 班</el-menu-item>
+            <el-menu-item index="2-2">二年级 (2) 班</el-menu-item>
           </el-submenu>
         </el-menu>
       </div>

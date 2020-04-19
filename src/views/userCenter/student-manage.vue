@@ -296,7 +296,7 @@ export default {
     }
   },
   created() {
-    this.$store.state.userStatus = 1
+    this.$store.state.userStatus = 3
   },
   methods: {
     // 删除功能

@@ -133,6 +133,44 @@
         </div>
       </div>
     </mu-dialog>
+    <!-- 编辑手环 -->
+    <mu-dialog width="460" :open.sync="dialog3">
+      <mu-appbar color="#204EFF" :title="dialogTitle3">
+        <mu-button slot="right" icon @click="dialog3 = false">
+          <mu-icon value="close" />
+        </mu-button>
+      </mu-appbar>
+      <div class="dialogList">
+        <h2>手环信息</h2>
+        <dl>
+          <dt><img src="../../assets/shouhuan.png" alt=""></dt>
+          <dd>
+            <p><span>手环颜色：</span> <el-input v-model="handDetail.color" /></p>
+            <p><span>手环编号：</span> <el-input v-model="handDetail.id" /></p>
+            <p><span>手环ID：</span> <el-input v-model="handDetail.mac" /></p>
+            <p><span>一卡通卡号：</span> <el-input v-model="handDetail.cardId" /></p>
+          </dd>
+        </dl>
+        <!-- 手环的状态 -->
+        <div class="status status1" />
+      </div>
+      <div class="dialogList">
+        <h2>修改状态</h2>
+        <div class="status-radio">
+          <el-radio-group v-model="handDetail.status">
+            <el-radio :label="1">备用</el-radio>
+            <el-radio :label="2">故障</el-radio>
+            <el-radio :label="3">丢失</el-radio>
+            <el-radio :label="4">其他</el-radio>
+          </el-radio-group>
+          <p>注意：1、若手环绑定有一卡通应用，请在一卡通系统中做丢失处理<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2、可循环使用的手环状态将变为空闲</p>
+        </div>
+        <div class="footer">
+          <el-button round size="mini" @click="dialog3 = false">取消</el-button>
+          <el-button type="primary" round class="btn" size="mini">保存</el-button>
+        </div>
+      </div>
+    </mu-dialog>
   </div>
 </template>
 <script>
@@ -151,6 +189,8 @@ export default {
       dialogTitle: '手环记录',
       dialog2: false,
       dialogTitle2: '单个入库',
+      dialog3: false,
+      dialogTitle3: '编辑手环',
       // 手环ID
       handId: '',
       ruku1: '1',
@@ -181,7 +221,8 @@ export default {
         name: '李沐雪',
         studentId: 20180501,
         sex: '女',
-        class: '三年级二班'
+        class: '三年级二班',
+        status: 3
       }
     }
   },
@@ -217,7 +258,7 @@ export default {
     },
     // 编辑
     editInfo(obj) {
-      console.log(obj)
+      this.dialog3 = true
     },
     // 删除
     deleteInfo(obj) {
@@ -318,10 +359,15 @@ export default {
       p {
         font-size: 14px;
         line-height: 25px;
+        margin-bottom: 10px;
         span {
           text-align: right;
           display: inline-block;
           width: 90px;
+        }
+        .el-input {
+          display: inline-block;
+          width: 170px;
         }
       }
     }
@@ -362,6 +408,24 @@ export default {
     bottom: -50px;
     color: #fff;
     transform: rotate(-45deg)
+  }
+  .status1 {
+    border-bottom: 40px solid #FF5959;
+  }
+  .status1:after {
+    content: '丢失';
+  }
+  .status-radio {
+    background: #fff;
+    .el-radio-group {
+      padding: 30px 30px 0 30px;
+    }
+    p {
+      color: #999;
+      padding: 20px 20px 0 20px;
+      font-size: 12px;
+      line-height: 25px;
+    }
   }
 }
 </style>
