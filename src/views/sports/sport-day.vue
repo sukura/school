@@ -33,7 +33,7 @@
         已上课程
       </mu-col>
     </mu-row>
-    <el-table :data="tableData" stripe height="500">
+    <el-table v-loading="dataListLoading" :data="dataList" stripe height="500" @selection-change="dataListSelectionChangeHandle">
       <el-table-column label="班级" prop="className" />
       <el-table-column label="上课时间" prop="time" />
       <el-table-column label="上课地点" prop="adress" />
@@ -52,44 +52,34 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+      background
+      :current-page="page"
+      :page-sizes="[10, 20, 50, 100]"
+      :page-size="limit"
+      :total="total"
+      layout="sizes, prev, pager, next, jumper"
+      @size-change="pageSizeChangeHandle"
+      @current-change="pageCurrentChangeHandle"
+    />
   </div>
 </template>
 <script>
+import mixinViewModule from '@/mixins/view-module'
 export default {
+  mixins: [mixinViewModule],
   data() {
     return {
+      mixinViewModuleOptions: {
+        getDataListURL: '/sports/day/page',
+        getDataListIsPage: true
+      },
       formData: {
         dataDay: '',
         name: '',
         nodeConfig: ''
       },
-      tableData: [
-        {
-          className: '三年级二班',
-          time: '9:00 - 10:00',
-          adress: '操场',
-          studentNumber: 30,
-          teacherName: '朱晓光',
-          id: 1,
-          status: 1
-        }, {
-          className: '三年级二班',
-          time: '9:00 - 10:00',
-          adress: '操场',
-          studentNumber: 30,
-          teacherName: '朱晓光',
-          id: 1,
-          status: 2
-        }, {
-          className: '三年级二班',
-          time: '9:00 - 10:00',
-          adress: '操场',
-          studentNumber: 30,
-          teacherName: '朱晓光',
-          id: 1,
-          status: 3
-        }
-      ],
+      tableData: [],
       pickerOptions: {
         disabledDate(time) {
           return time.getTime() > Date.now()
