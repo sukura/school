@@ -45,9 +45,7 @@
         <el-table-column type="selection" width="55" />
         <el-table-column label="课程" prop="className" align="center">
           <template slot-scope="scope">
-            <div>
-              <span class="shou" @click="classDetail(scope.row)"><i class="el-icon-view" /> {{ scope.row.className }}</span>
-            </div>
+            <el-link type="primary" :underline="false" @click="classDetail(scope.row)">{{ scope.row.className }}</el-link>
           </template>
         </el-table-column>
         <el-table-column label="教室" prop="classRoom" align="center" />
@@ -205,7 +203,7 @@ export default {
           ]
         }, {
           class: '高二(5)班',
-          className: '语文',
+          className: '数学',
           teacher: '刘老师',
           classRoom: '2513-1',
           time: '10:00 - 10:45',
@@ -218,7 +216,7 @@ export default {
           workData: []
         }, {
           class: '高二(5)班',
-          className: '语文',
+          className: '英语',
           teacher: '刘老师',
           classRoom: '2513-1',
           time: '11:00 - 11:45',

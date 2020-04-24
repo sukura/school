@@ -62,6 +62,84 @@
       @size-change="pageSizeChangeHandle"
       @current-change="pageCurrentChangeHandle"
     />
+    <!-- 创建课程 -->
+    <mu-dialog width="460" :open.sync="dialog">
+      <mu-appbar color="#204EFF" title="创建课程">
+        <mu-button slot="right" icon @click="dialog = false">
+          <mu-icon value="close" />
+        </mu-button>
+      </mu-appbar>
+      <div class="dialogList">
+        <h3><i class="el-icon-warning" /> 请至少提前一个小时创建课程</h3>
+        <el-form ref="formData" :model="formData" label-width="80px">
+          <el-form-item label="上课学生" prop="student">
+            <el-select v-model="formData.student" placeholder="请选择上课学生">
+              <el-option label="三年级一班" value="三年级一班" />
+              <el-option label="三年级二班" value="三年级二班" />
+            </el-select>
+          </el-form-item>
+          <el-form-item label="上课日期">
+            <el-date-picker
+              v-model="formData.date"
+              type="date"
+              placeholder="请选择上课日期"
+            />
+          </el-form-item>
+          <el-form-item label="上课地点">
+            <el-select v-model="formData.address" placeholder="请选择上课地点">
+              <el-option label="三年级一班" value="三年级一班" />
+            </el-select>
+          </el-form-item>
+          <el-form-item label="上课时间">
+            <el-time-select
+              v-model="formData.startTime"
+              placeholder="起始时间"
+              :picker-options="{
+                start: '08:30',
+                step: '00:15',
+                end: '18:30'
+              }"
+              style="width: 118px;"
+            />
+            <el-time-select
+              v-model="formData.endTime"
+              placeholder="结束时间"
+              :picker-options="{
+                start: '08:30',
+                step: '00:15',
+                end: '18:30',
+                minTime: formData.startTime
+              }"
+              style="width: 118px;"
+            />
+          </el-form-item>
+          <el-form-item label="上课名称">
+            <el-input v-model="formData.className" placeholder="请输入上课名称" />
+          </el-form-item>
+          <el-form-item label="任课老师">
+            <el-select v-model="formData.time" placeholder="请选择任课老师">
+              <el-option label="张老师" value="张老师" />
+            </el-select>
+          </el-form-item>
+          <el-form-item label="课程内容">
+            <el-input v-model="formData.className" placeholder="请输入课程内容" />
+            <p>
+              <el-tag v-for="(item, index) in tagsData" :key="index" :type="item.status ? '':'info'" effect="dark" @click="changeTag(item)">{{ item.value }}</el-tag>
+            </p>
+          </el-form-item>
+          <el-form-item label="课程名称">
+            <el-input v-model="formData.className" placeholder="请输入课程名称" />
+            <p>
+              <el-tag v-for="(item, index) in tagsData2" :key="index" :type="item.status ? '':'info'" effect="dark" @click="changeTag(item)">{{ item.value }}</el-tag>
+            </p>
+          </el-form-item>
+          <el-form-item style="text-align: right;padding-right: 25px;">
+            <el-button @click="dialog = false">取消</el-button>
+            <el-button type="primary" @click="dialog = false">保存</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
+    </mu-dialog>
   </div>
 </template>
 <script>
@@ -74,17 +152,47 @@ export default {
         getDataListURL: '/sports/day/page',
         getDataListIsPage: true
       },
+      dialog: false,
       formData: {
-        dataDay: '',
-        name: '',
-        nodeConfig: ''
+        startTime: '',
+        endTime: ''
       },
       tableData: [],
       pickerOptions: {
         disabledDate(time) {
           return time.getTime() > Date.now()
         }
-      }
+      },
+      tagsData: [
+        {
+          value: '心肺耐力',
+          status: false
+        }, {
+          value: '灵敏度',
+          status: false
+        }, {
+          value: '爆发力',
+          status: false
+        }, {
+          value: '速度',
+          status: false
+        }
+      ],
+      tagsData2: [
+        {
+          value: '跑步',
+          status: false
+        }, {
+          value: '篮球',
+          status: false
+        }, {
+          value: '乒乓球',
+          status: false
+        }, {
+          value: '跳马',
+          status: false
+        }
+      ]
     }
   },
   created() {
@@ -94,19 +202,20 @@ export default {
   },
   methods: {
     viewInfo(obj) {
-      this.$message({
-        type: 'success',
-        message: '查看详情',
-        offset: 200
+      // this.$message({
+      //   type: 'success',
+      //   message: '查看详情',
+      //   offset: 200
+      // })
+      this.$router.push({
+        path: 'sportsDayDetail'
       })
-      console.log(obj)
     },
     classHandle() {
-      this.$message({
-        type: 'success',
-        message: '创建课程',
-        offset: 200
-      })
+      this.dialog = true
+    },
+    changeTag(obj) {
+      obj.status = !obj.status
     }
   }
 }
@@ -162,11 +271,33 @@ export default {
     }
   }
   .el-table {
+    margin-bottom: 20px;
     .leave {
       color: #909BB0;
     }
     .arrive {
       color: #204EFF;
+    }
+  }
+}
+.dialogList {
+  background: #fff;
+  padding-left: 40px;
+  h3 {
+    color: red;
+    padding: 0 0 20px 20px;
+  }
+  .el-form {
+    background: #fff;
+    .el-select,
+    .el-input {
+      width: 240px;
+    }
+    p {
+      .el-tag {
+        margin-right: 10px;
+        cursor: pointer;
+      }
     }
   }
 }

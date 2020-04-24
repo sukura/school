@@ -101,9 +101,17 @@ export default new Router({
           name: 'sportsDay',
           component: () => import('../views/sports/sport-day.vue')
         }, {
+          path: 'sportsDayDetail', // 体育课 - 今日课程 详情数据
+          name: 'sportsDayDetail',
+          component: () => import('../views/sports/sport-detail.vue')
+        }, {
           path: 'sportslist', // 体育课 - 历史课程
           name: 'sportslist',
           component: () => import('../views/sports/sports-list.vue')
+        }, {
+          path: 'sportslistDetail', // 体育课 - 历史课程 详情数据
+          name: 'sportslistDetail',
+          component: () => import('../views/sports/sports-list2.vue')
         }
       ]
     }, {

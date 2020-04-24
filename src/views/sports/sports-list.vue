@@ -100,10 +100,8 @@ export default {
   methods: {
     // 查看记录
     viewInfo(obj) {
-      this.$message({
-        type: 'success',
-        message: '查看详情',
-        offset: 200
+      this.$router.push({
+        path: 'sportslistDetail'
       })
     },
     pkHandle(row) {
