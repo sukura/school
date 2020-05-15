@@ -234,7 +234,7 @@ export default {
     // 跳转日统计
     jumpPage() {
       this.$router.push({
-        path: 'classDay'
+        path: 'myclassDay'
       })
     },
     format(percentage) {
