@@ -15,7 +15,7 @@
     "element-ui": "^2.13.0",
     "mockjs": "^1.1.0",
     "muse-ui": "^3.0.2",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"
